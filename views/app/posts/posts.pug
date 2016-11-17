@@ -1,0 +1,52 @@
+extends ../layout
+block contenido
+
+    include ../nav.pug
+    div(class="margen_principal")
+        include ../nav_backend.pug
+
+        div(id="contenerdor_principal_posts")
+            div(class="menu_top_item")
+                div(class="post_menu_titulo")
+                    | Titulo
+                div(class="post_menu_fecha")
+                    | Fecha
+                div(class="post_menu_categoria")
+                    | Categoria
+                div(class="post_menu_top_acciones")
+                    | Acciones
+            div(id="container_items")
+
+
+                for posts in post
+
+
+
+
+                    div(class="menu_item")
+                        div(class="post_menu_titulo")
+                            =posts.title
+                        div(class="post_menu_fecha")
+                            =posts.date
+                        div(class="post_menu_categoria")
+
+                            =posts.category
+                        div(class="post_menu_acciones")
+                            script.
+                                function a() {
+                                    confirm("Este elemento será elminado permanentemente");
+                                }
+                            form(action="/app/posts/" + posts._id + "?_method=DELETE" method="post")
+                                a(href='/app/posts/' +posts._id+ '/edit') Editar
+
+                                input(type="submit", onClick="", value=" Eliminar")
+
+
+
+
+
+
+
+
+
+

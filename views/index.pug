@@ -1,0 +1,68 @@
+extends app/layout
+block contenido
+    script.
+        function u(str) {
+            return String(str).replace('&amp;', /&/g).replace('&lt;', /</g).replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+    include app/nav
+    include app/header
+
+    div(class="margen_principal")
+
+        section(id="section")
+
+            for posts in post
+                -var a
+
+                -var eval = posts.category
+                -if(eval==1){a="Fashion"}else {if(eval==2){a="Beauty"} else {if(eval==3){a="Travel"} else {if(eval==4){a="Food"}}}}
+
+                div(class="titulo_post")
+                    p
+                        a(href='/posts/' +posts._id)
+                            =posts.title
+                div(class="fecha_post")
+                    p
+                        -miFecha = new Date()
+                        -miFecha = posts.date
+                        -var mer = "AM"
+                        -var hora = miFecha.getHours()
+                        -var numDay = miFecha.getDate()
+                        -var dayArray = new Array('Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab', 'Dom');
+                        -var day = dayArray[miFecha.getDay()];
+                        -var dayArray = new Array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
+                        -var month = dayArray[miFecha.getMonth()];
+                        -if(hora >11){mer="PM"}
+
+                        =day +" " + numDay+ " " + month +" "+ miFecha.getFullYear() +" " +miFecha.getHours()+":"+ miFecha.getMinutes()+ mer
+
+
+                div(class="fecha_post")
+                    p
+                        =a
+                div(class="imagen_titular_post")
+                    img(src="/images/" + posts.id + "_1." + posts.foto1)
+                div(class="descripcion_post" )
+                    p(id="capa")
+
+                        !=posts.description
+
+                div(class="botones_post")
+                    div(id="container_boton_post")
+                        form
+                            input(type="submit" name="leer_mas" value="Leer Mas" class="boton1")
+                        div(id="container_boton_redes")
+                            a(href="#")
+                                div(id="redes_1")
+                            a(href="#")
+                                div(id="redes_2")
+                            a(href="#")
+                                div(id="redes_3")
+                            a(href="#")
+                                div(id="redes_4")
+                hr
+
+        include aside.pug
+
+
+        footer

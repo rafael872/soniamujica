@@ -1,0 +1,80 @@
+extends ../layout
+block contenido
+
+    include ../nav
+    div(class="margen_principal")
+
+        form(action="/app/posts/"+post.id+"?_method=PUT"  method="POST" id="subir")
+            input(type="hidden" value="PUT" name="_method" form="subir")
+        include ../nav_backend.pug
+        div(class="nuevo_container_titulo")
+            p Publicar
+        div(class="container_flex")
+
+            div(class="container_item")
+                div(class="titulo_container_item")
+                    p Imagen Principal
+                div(class="imagen_container_item")
+                    img(src="/images/añadir.png")
+            div(class="container_item")
+                div(class="titulo_container_item")
+                    p Categoría
+                div(class="imagen_container_item")
+                    select(name="category" form="subir" )
+                            -var a,b,c,d = false
+                            -var eval = post.category
+                            -if(eval==1){a=true}else {if(eval==2){b=true} else {if(eval==3){c=true} else {if(eval==4){d=true}}}}
+                            option(selected=a value="1")
+                                | Fashion
+                            option(selected=b value="2")
+                                | Beauty
+                            option(selected=c value="3")
+                                | Travel
+                            option(selected=d value="4")
+                                | Food
+
+        div(class="container_flex")
+            div(class="titulo_container_item")
+                p
+                    label(for="title") Título
+                input(type="text" id="title" value=post.title form="subir" name="title" style="max-width:100%;width:100%;")
+        div(class="container_flex")
+            div(class="titulo_container_item")
+                p Descripcion
+                textarea(rows="4" cols="50"  name="description" form="subir" style="max-width:100%;width:100%;")
+                    =post.description
+        div(class="container_flex")
+            div(class="container_item")
+                div(class="titulo_container_item")
+                    p Imagenes secundarias
+                div(class="imagen_container_item")
+                    img(src="/images/añadir.png")
+            div(class="container_item")
+                div(class="titulo_container_item")
+                    p
+                div(class="imagen_container_item")
+                    img(src="/images/añadir.png")
+            div(class="container_item")
+                div(class="titulo_container_item")
+                    p
+                div(class="imagen_container_item")
+                    img(src="/images/añadir.png")
+            div(class="container_item")
+                div(class="titulo_container_item")
+                    p
+                div(class="imagen_container_item")
+                    img(src="/images/añadir.png")
+            div(class="container_item")
+                div(class="titulo_container_item")
+                    p
+                div(class="imagen_container_item")
+                    img(src="/images/añadir.png")
+
+
+
+
+
+            label(for="archivo") Imagen
+            input(type="file", name="archivo", id="archivo")
+
+            input(type="submit" value="Subir" form="subir")

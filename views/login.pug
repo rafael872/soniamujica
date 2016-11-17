@@ -1,0 +1,21 @@
+extends app/layout
+block contenido
+    include app/nav
+    div(class="margen_principal")
+
+        div(id="centrar_objeto")
+
+            div(id="posicion_login")
+                form(action="/sessions", method="POST" class="login_container")
+                    p(class="h1") Inicio de sesión
+                    br
+                    div
+                        label(for="email") Email
+                        br
+                        input(type="text", name="email", placeholder="Email", id="email")
+                    div
+                        label(for="password") Password
+                        br
+                        input(type="password", name="password", placeholder="Password", id="password")
+                    div
+                        input(type="submit" value="Iniciar Sesion" class="boton1")
