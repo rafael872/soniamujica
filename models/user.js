@@ -1,6 +1,14 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
-mongoose.connect("mongodb://localhost/blog");
+var config = {
+    "USER"    : "root",
+    "PASS"    : "rafael872",
+    "HOST"    : "ec2-52-3-250-83.compute-1.amazonaws.com",
+    "PORT"    : "27017",
+    "DATABASE" : "blog"
+};
+var dbPath  = "mongodb://"+config.USER + ":"+config.PASS + "@"+config.HOST + ":"+config.PORT + "/"+config.DATABASE;
+mongoose.connect(dbPath);
 
 var posibles_valores = ["M", "F"];
 var email_match = [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, "Coloca un correo"];
