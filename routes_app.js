@@ -74,7 +74,7 @@ router.route("/posts")
             post.save(function (err) {
                 var postId = post._id
                 if (!err) {
-                    mv(req.files.archivo.path, "public/images/" + post._id + "_1." +extension,function(err){
+                    mv(req.files.archivo.path, "public/images/" + post.id + "_1." +extension,function(err){
                         if(err){
                             throw err;
                         }
